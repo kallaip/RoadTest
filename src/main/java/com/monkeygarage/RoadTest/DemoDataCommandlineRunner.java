@@ -1,12 +1,16 @@
 package com.monkeygarage.RoadTest;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import com.monkeygarage.RoadTest.bean.Appointment;
 import com.monkeygarage.RoadTest.bean.Owner;
 import com.monkeygarage.RoadTest.bean.Supervisor;
 import com.monkeygarage.RoadTest.bean.Vehicle;
+import com.monkeygarage.RoadTest.service.AppointmentRepository;
 import com.monkeygarage.RoadTest.service.OwnerRepository;
 import com.monkeygarage.RoadTest.service.SupervisorRepository;
 import com.monkeygarage.RoadTest.service.VehicleRepository;
@@ -22,6 +26,9 @@ public class DemoDataCommandlineRunner implements CommandLineRunner {
 	
 	@Autowired
 	private SupervisorRepository supervisorService;
+	
+	@Autowired
+	private AppointmentRepository appointmentService;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -42,8 +49,13 @@ public class DemoDataCommandlineRunner implements CommandLineRunner {
 		supervisorService.save(s1);
 		Supervisor s2 = new Supervisor("Mathilda Cloud");
 		supervisorService.save(s2);
-		Supervisor s3 = new Supervisor("Debra Dirty");
+		Supervisor s3 = new Supervisor("Devon Dirty");
 		supervisorService.save(s3);
+		
+		Appointment a1 = new Appointment(new Date(), v1, s2);
+		appointmentService.save(a1);
+		Appointment a2 = new Appointment(new Date(), v3, s3);
+		appointmentService.save(a2);
 		
 	}
 }
