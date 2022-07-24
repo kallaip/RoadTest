@@ -1,5 +1,4 @@
 package com.monkeygarage.RoadTest.exception;
-
 import java.util.Date;
 
 import org.springframework.hateoas.EntityModel;
@@ -11,11 +10,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
 
 @ControllerAdvice
-public class OwnerNotFoundAdvice {
+public class VehicleNotFoundAdvice {
 	@ResponseBody
-	@ExceptionHandler(OwnerNotFoundException.class)
+	@ExceptionHandler(VehicleNotFoundException.class)
 	@ResponseStatus(HttpStatus.NOT_FOUND)
-	EntityModel<ExceptionResponse> ownerNotFoundHandler(OwnerNotFoundException ex, WebRequest request) {
+	EntityModel<ExceptionResponse> vehicleNotFoundHandler(VehicleNotFoundException ex, WebRequest request) {
 		
 		ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage(),
 				request.getDescription(false));
