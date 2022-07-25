@@ -94,6 +94,6 @@ public class Centre {
 	
 	public List<Appointment> getHistory(Long id) throws VehicleNotFoundException {
 		Vehicle v = vehicleService.findById(id).orElseThrow(() -> new VehicleNotFoundException(id)); 
-		return appointmentService.findByVehicle(v);
+		return appointmentService.findByVehicle(v.getId());
 	}
 }

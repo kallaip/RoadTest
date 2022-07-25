@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -78,6 +79,34 @@ public class CentreController {
 	public List<Appointment> getFailedAppointments() {
 		Centre centre = new Centre();
 		return centre.listByStatus(Appointment.AppointmentState.FAILED);
+	}
+	
+	// PUT /cancel
+	@PutMapping("/cancel")
+	Appointment cancelAppointment(@RequestBody Appointment a) {
+		Centre centre = new Centre();
+		return centre.cancel(a);
+	}
+
+	// PUT /success
+	@PutMapping("/success")
+	Appointment successAppointment(@RequestBody Appointment a) {
+		Centre centre = new Centre();
+		return centre.success(a);
+	}
+
+	// PUT /fail
+	@PutMapping("/fail")
+	Appointment failAppointment(@RequestBody Appointment a) {
+		Centre centre = new Centre();
+		return centre.fail(a);
+	}
+	
+	// PUT /accept
+	@PutMapping("/accept")
+	Appointment acceptAppointment(@RequestBody Appointment a, @RequestBody Supervisor s) {
+		Centre centre = new Centre();
+		return centre.accept(a, s);
 	}
 	
 	//GET /vehiclehistory/{id}
