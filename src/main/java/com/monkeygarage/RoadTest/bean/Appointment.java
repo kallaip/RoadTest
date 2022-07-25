@@ -11,7 +11,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class Appointment {
 
-	enum AppointmentState {
+	public enum AppointmentState {
 		NEW,
 		CANCELED,
 		ACCEPTED,
