@@ -13,7 +13,7 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
 	@Query("SELECT a FROM Appointment a WHERE a.state=?1")
 	List<Appointment> findByState(Appointment.AppointmentState s);
 	
-	@Query("SELECT a FROM Appointment a WHERE a.Vehicle=?1")
+	@Query("SELECT a FROM Appointment a WHERE a.Vehicle=?1 ORDER BY Date DESC")
 	List<Appointment> findByVehicle(Vehicle v); 
 	
 }

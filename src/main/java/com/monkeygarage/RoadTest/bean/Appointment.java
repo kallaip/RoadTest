@@ -14,7 +14,6 @@ public class Appointment {
 	public enum AppointmentState {
 		NEW,
 		CANCELED,
-		ACCEPTED,
 		INPROGRESS,
 		SUCCESSFUL,
 		FAILED
@@ -73,6 +72,14 @@ public class Appointment {
 
 	public void setSupervisor(Supervisor supervisor) {
 		this.supervisor = supervisor;
+	}
+
+	public AppointmentState getState() {
+		return state;
+	}
+
+	public void setState(AppointmentState state) {
+		this.state = state;
 	}
 
 	@Override
