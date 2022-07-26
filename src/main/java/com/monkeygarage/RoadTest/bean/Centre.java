@@ -1,10 +1,12 @@
 package com.monkeygarage.RoadTest.bean;
 
 import java.time.LocalDateTime;
+
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.monkeygarage.RoadTest.exception.AppointmentNotFoundException;
 import com.monkeygarage.RoadTest.exception.SupervisorNotFoundException;
@@ -12,6 +14,7 @@ import com.monkeygarage.RoadTest.exception.VehicleNotFoundException;
 import com.monkeygarage.RoadTest.service.AppointmentRepository;
 import com.monkeygarage.RoadTest.service.SupervisorRepository;
 import com.monkeygarage.RoadTest.service.VehicleRepository;
+
 
 public class Centre {
 	
@@ -24,8 +27,12 @@ public class Centre {
 	
 	private static final String name = "Monkey Garage";
 
-	public Centre() {
+	public Centre(AppointmentRepository appointmentService, SupervisorRepository supervisorService,
+			VehicleRepository vehicleService) {
 		super();
+		this.appointmentService = appointmentService;
+		this.supervisorService = supervisorService;
+		this.vehicleService = vehicleService;
 	}
 
 	public String getName() {
@@ -94,6 +101,6 @@ public class Centre {
 	
 	public List<Appointment> getHistory(Long id) throws VehicleNotFoundException {
 		Vehicle v = vehicleService.findById(id).orElseThrow(() -> new VehicleNotFoundException(id)); 
-		return appointmentService.findByVehicle(v.getId());
+		return appointmentService.findByVehicle(v);
 	}
 }
